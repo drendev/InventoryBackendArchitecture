@@ -13,7 +13,7 @@ namespace Domain.Models
 
         // Product Relational Property
         [ForeignKey("ProductId")]
-        public Guid ProductId { get; set; }
+        public string ProductId { get; set; }
 
         public ICollection<Product> Products { get; set; } = new List<Product>();
     }

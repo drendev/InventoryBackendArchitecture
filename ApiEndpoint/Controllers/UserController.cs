@@ -30,5 +30,13 @@ namespace ApiEndpoint.Controllers
             var response = await user.SignupAsync(signupDto);
             return Ok(response);
         }
+
+        [HttpPost("logout")]
+        public async Task<ActionResult<LoginResponse>> Logout()
+        {
+            // Clear the cookie
+            Response.Cookies.Delete("jwt");
+            return Ok(new LoginResponse(true, "Logged out successfully"));
+        }
     }
 }

@@ -38,6 +38,7 @@ namespace Infrastructure.Providers
             });
 
             services.AddScoped<IUser, UserGateway>();
+            services.AddScoped<IProducts, ProductGateway>();
 
             return services;
         }
