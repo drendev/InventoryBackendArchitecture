@@ -85,6 +85,55 @@ namespace Infrastructure.Gateway
             return new ProductResponse(true, "Product deleted successfully");
         }
 
+        // Add stock to product
+
+        public async Task<ProductResponse> AddStockAsync(string productId, int stock)
+        {
+            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
+
+            if (product == null)
+            {
+                return new ProductResponse(false, "Product not found");
+            }
+
+            if(stock < 0 || stock > 100)
+            {
+                return new ProductResponse(false, "Invalid Stock Input");
+            }
+
+            product.Stock += stock;
+
+            appDbContext.Products.Update(product);
+            await appDbContext.SaveChangesAsync();
+
+            return new ProductResponse(true, "Stock added successfully");
+        }
+
+        // Remove stock
+
+        public async Task<ProductResponse> RemoveStockAsync(string productId, int stock)
+        {
+            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
+
+            if (product == null)
+            {
+                return new ProductResponse(false, "Product not found");
+            }
+
+            if (product.Stock < stock)
+            {
+                return new ProductResponse(false, "Stock is less than the quantity you want to remove");
+            }
+
+            product.Stock -= stock;
+
+            appDbContext.Products.Update(product);
+            await appDbContext.SaveChangesAsync();
+
+            return new ProductResponse(true, "Stock removed successfully");
+        }
+
+        // Scan Barcode to search for product
         public async Task<ProductResponse> GetProductAsync(string productId)
         {
             var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
