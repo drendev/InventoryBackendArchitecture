@@ -11,7 +11,7 @@ namespace Application.Interfaces
         Task<ProductResponse> DeleteProductAsync(string productId);
         Task<ProductResponse> GetProductAsync(string productId);
         Task<ProductResponse> GetProductsAsync();
-        Task<ProductResponse> AddStockAsync(string productId, int stock);
-        Task<ProductResponse> RemoveStockAsync(string productId, int stock);
+        Task<ProductResponse> AddStockAsync(StockDto stockDto);
+        Task<ProductResponse> RemoveStockAsync(StockDto stockDto);
     }
 }

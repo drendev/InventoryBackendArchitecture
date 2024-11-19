@@ -53,16 +53,16 @@ namespace ApiEndpoint.Controllers
         }
 
         [HttpPost("addstock")]
-        public async Task<ActionResult<ProductResponse>> AddStock(string productId, int stock)
+        public async Task<ActionResult<ProductResponse>> AddStock(StockDto stockDto)
         {
-            var response = await products.AddStockAsync(productId, stock);
+            var response = await products.AddStockAsync(stockDto);
             return Ok(response);
         }
 
         [HttpPost("removestock")]
-        public async Task<ActionResult<ProductResponse>> RemoveStock(string productId, int stock)
+        public async Task<ActionResult<ProductResponse>> RemoveStock(StockDto stockDto)
         {
-            var response = await products.RemoveStockAsync(productId, stock);
+            var response = await products.RemoveStockAsync(stockDto);
             return Ok(response);
         }
     }

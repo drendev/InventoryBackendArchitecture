@@ -87,21 +87,21 @@ namespace Infrastructure.Gateway
 
         // Add stock to product
 
-        public async Task<ProductResponse> AddStockAsync(string productId, int stock)
+        public async Task<ProductResponse> AddStockAsync(StockDto stockDto)
         {
-            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
+            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.ProductId == stockDto.ProductId);
 
             if (product == null)
             {
                 return new ProductResponse(false, "Product not found");
             }
 
-            if(stock < 0 || stock > 100)
+            if(stockDto.Stock < 0 || stockDto.Stock > 100)
             {
                 return new ProductResponse(false, "Invalid Stock Input");
             }
 
-            product.Stock += stock;
+            product.Stock += stockDto.Stock;
 
             appDbContext.Products.Update(product);
             await appDbContext.SaveChangesAsync();
@@ -111,21 +111,21 @@ namespace Infrastructure.Gateway
 
         // Remove stock
 
-        public async Task<ProductResponse> RemoveStockAsync(string productId, int stock)
+        public async Task<ProductResponse> RemoveStockAsync(StockDto stockDto)
         {
-            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
+            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.ProductId == stockDto.ProductId);
 
             if (product == null)
             {
                 return new ProductResponse(false, "Product not found");
             }
 
-            if (product.Stock < stock)
+            if (product.Stock < stockDto.Stock)
             {
                 return new ProductResponse(false, "Stock is less than the quantity you want to remove");
             }
 
-            product.Stock -= stock;
+            product.Stock -= stockDto.Stock;
 
             appDbContext.Products.Update(product);
             await appDbContext.SaveChangesAsync();
