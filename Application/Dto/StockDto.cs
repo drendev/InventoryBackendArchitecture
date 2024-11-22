@@ -10,7 +10,7 @@ namespace Application.Dto
     public class StockDto
     {
         [Required]
-        public string ProductId { get; set; } = string.Empty;
+        public string Barcode { get; set; } = string.Empty;
 
         [Required]
         public int Stock { get; set; } = 1;

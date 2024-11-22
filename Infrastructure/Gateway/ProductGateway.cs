@@ -90,7 +90,7 @@ namespace Infrastructure.Gateway
 
         public async Task<ProductResponse> AddStockAsync(StockDto stockDto)
         {
-            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.ProductId == stockDto.ProductId);
+            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.Barcode == stockDto.Barcode);
 
             if (product == null)
             {
@@ -114,7 +114,7 @@ namespace Infrastructure.Gateway
 
         public async Task<ProductResponse> RemoveStockAsync(StockDto stockDto)
         {
-            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.ProductId == stockDto.ProductId);
+            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.Barcode == stockDto.Barcode);
 
             if (product == null)
             {
