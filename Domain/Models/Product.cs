@@ -9,6 +9,8 @@ namespace Domain.Models
         [Key]
         public string ProductId { get; set; }
 
+        public string? Barcode { get; set; }
+
         public string? ProductName { get; set; }
 
         public string? Description { get; set; }
@@ -19,12 +21,10 @@ namespace Domain.Models
         public DateOnly? ManufDate { get; set; }
         public string? ImageUrl { get; set; }
 
-        // Sales
-        public ICollection<Sale> Sales { get; set; } = new List<Sale>();
-
         public Product()
         {
             ProductId = Guid.NewGuid().ToString("N").Substring(0, 14);
+            Barcode = Guid.NewGuid().ToString("N").Substring(0, 10);
         }
     }
 }

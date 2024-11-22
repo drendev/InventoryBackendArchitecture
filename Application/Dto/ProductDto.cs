@@ -12,6 +12,9 @@ namespace Application.Dto
         public string Description { get; set; } = string.Empty;
 
         [Required]
+        public string Barcode { get; set; } = string.Empty;
+
+        [Required]
         public decimal BasePrice { get; set; }
 
         [Required]

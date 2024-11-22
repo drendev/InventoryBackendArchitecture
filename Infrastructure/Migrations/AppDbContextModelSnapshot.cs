@@ -27,6 +27,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Barcode")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<decimal?>("BasePrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -53,37 +56,11 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("Barcode")
+                        .IsUnique()
+                        .HasFilter("[Barcode] IS NOT NULL");
+
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Domain.Models.Sale", b =>
-                {
-                    b.Property<Guid>("SaleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CustomerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaymentMethod")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("SaleDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal?>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("TotalProducts")
-                        .HasColumnType("int");
-
-                    b.HasKey("SaleId");
-
-                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("Domain.Models.User", b =>
@@ -113,36 +90,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("SaleProduct", b =>
-                {
-                    b.Property<string>("ProductId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("SaleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ProductId", "SaleId");
-
-                    b.HasIndex("SaleId");
-
-                    b.ToTable("SaleProduct");
-                });
-
-            modelBuilder.Entity("SaleProduct", b =>
-                {
-                    b.HasOne("Domain.Models.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Models.Sale", null)
-                        .WithMany()
-                        .HasForeignKey("SaleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

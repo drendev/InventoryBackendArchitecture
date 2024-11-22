@@ -39,9 +39,9 @@ namespace ApiEndpoint.Controllers
         }
 
         [HttpGet("get/{productId}")]
-        public async Task<ActionResult<ProductResponse>> GetProduct(string productId)
+        public async Task<ActionResult<ProductResponse>> GetProduct(string barcode)
         {
-            var response = await products.GetProductAsync(productId);
+            var response = await products.GetProductAsync(barcode);
             return Ok(response);
         }
 

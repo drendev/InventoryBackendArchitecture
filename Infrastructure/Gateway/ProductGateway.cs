@@ -63,6 +63,7 @@ namespace Infrastructure.Gateway
             product.ExpiryDate = productDto.ExpiryDate;
             product.ManufDate = productDto.ManufDate;
             product.ImageUrl = productDto.ImageUrl;
+            product.Barcode = productDto.Barcode;
 
             appDbContext.Products.Update(product);
             await appDbContext.SaveChangesAsync();
@@ -134,9 +135,9 @@ namespace Infrastructure.Gateway
         }
 
         // Scan Barcode to search for product
-        public async Task<ProductResponse> GetProductAsync(string productId)
+        public async Task<ProductResponse> GetProductAsync(string barcode)
         {
-            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
+            var product = await appDbContext.Products.FirstOrDefaultAsync(p => p.Barcode == barcode);
 
             if (product == null)
             {
