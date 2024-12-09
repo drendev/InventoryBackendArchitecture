@@ -18,13 +18,11 @@ namespace Domain.Models
         public decimal? SalePrice { get; set; }
         public int? Stock { get; set; }
         public DateOnly? ExpiryDate { get; set; }
-        public DateOnly? ManufDate { get; set; }
         public string? ImageUrl { get; set; }
 
         public Product()
         {
             ProductId = Guid.NewGuid().ToString("N").Substring(0, 14);
-            Barcode = Guid.NewGuid().ToString("N").Substring(0, 10);
         }
     }
 }

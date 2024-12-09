@@ -39,6 +39,8 @@ namespace Infrastructure.Providers
 
             services.AddScoped<IUser, UserGateway>();
             services.AddScoped<IProducts, ProductGateway>();
+            services.AddScoped<IReports, ReportGateway>();
+            services.AddScoped<IDashboard, DashboardGateway>();
 
             return services;
         }

@@ -28,8 +28,5 @@ namespace Application.Dto
 
         [Required]
         public DateOnly ExpiryDate { get; set; } = DateOnly.MinValue;
-
-        [Required]
-        public DateOnly ManufDate { get; set; } = DateOnly.MinValue;
     }
 }

@@ -31,12 +31,12 @@ namespace Infrastructure.Gateway
             var product = new Product
             {
                 ProductName = productDto.ProductName,
+                Barcode = productDto.Barcode,
                 Description = productDto.Description,
                 BasePrice = productDto.BasePrice,
                 SalePrice = productDto.SalePrice,
                 Stock = productDto.Stock,
                 ExpiryDate = productDto.ExpiryDate,
-                ManufDate = productDto.ManufDate,
                 ImageUrl = productDto.ImageUrl,
             };
 
@@ -61,7 +61,6 @@ namespace Infrastructure.Gateway
             product.SalePrice = productDto.SalePrice;
             product.Stock = productDto.Stock;
             product.ExpiryDate = productDto.ExpiryDate;
-            product.ManufDate = productDto.ManufDate;
             product.ImageUrl = productDto.ImageUrl;
             product.Barcode = productDto.Barcode;
 

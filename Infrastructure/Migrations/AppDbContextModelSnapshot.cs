@@ -42,9 +42,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateOnly?>("ManufDate")
-                        .HasColumnType("date");
-
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
@@ -61,6 +58,37 @@ namespace Infrastructure.Migrations
                         .HasFilter("[Barcode] IS NOT NULL");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Domain.Models.Report", b =>
+                {
+                    b.Property<string>("ReportId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<TimeOnly>("Created")
+                        .HasColumnType("time");
+
+                    b.Property<int>("CurrentStock")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReportType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReportId");
+
+                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("Domain.Models.User", b =>

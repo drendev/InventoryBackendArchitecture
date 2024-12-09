@@ -1,5 +1,25 @@
 [
   {
+    "ContainingType": "ApiEndpoint.Controllers.DashboardController",
+    "Method": "GetDashboard",
+    "RelativePath": "api/Dashboard/get",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Application.Response.DashboardResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "ApiEndpoint.Controllers.ProductController",
     "Method": "AddProduct",
     "RelativePath": "api/Product/add",
@@ -100,13 +120,13 @@
   {
     "ContainingType": "ApiEndpoint.Controllers.ProductController",
     "Method": "GetProduct",
-    "RelativePath": "api/Product/get/{productId}",
+    "RelativePath": "api/Product/get/{barcode}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "productId",
+        "Name": "barcode",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -166,6 +186,52 @@
     "ReturnTypes": [
       {
         "Type": "Application.Response.ProductResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiEndpoint.Controllers.ReportController",
+    "Method": "AddReport",
+    "RelativePath": "api/Report/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reportDto",
+        "Type": "Application.Dto.ReportDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Application.Response.ReportResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiEndpoint.Controllers.ReportController",
+    "Method": "GetReports",
+    "RelativePath": "api/Report/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Application.Response.ReportResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
